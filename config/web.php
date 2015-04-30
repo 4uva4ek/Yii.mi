@@ -7,9 +7,21 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'rules'=>array(
+                // это пример добавления который заработал
+                //'secondcontroller/<action:.*>'=>'secondcontroller/<action>',
+                'user/<action:.*>'=>'user/<action>',
+                //'<action:.*>'=>'site/<action>', //закомментил а то глючило с ним
+                '<controller:\w+>/<id:\d+>'=>'<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+            ),
+            ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => '',
+            'cookieValidationKey' => 'web',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
