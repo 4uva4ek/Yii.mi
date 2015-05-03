@@ -6,7 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
+use app\models\User;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -42,7 +42,6 @@ class SiteController extends Controller
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
     }
@@ -54,17 +53,36 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
-        if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
+        $serviceName = Yii::$app->getRequest()->getQueryParam('service');
+        if (isset($serviceName)) {
+            /** @var $eauth \nodge\eauth\ServiceBase */
+            $eauth = Yii::$app->get('eauth')->getIdentity($serviceName);
+            $eauth->setRedirectUrl(Yii::$app->getUser()->getReturnUrl());
+            $eauth->setCancelUrl(Yii::$app->getUrlManager()->createAbsoluteUrl('site/login'));
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            return $this->render('login', [
-                'model' => $model,
-            ]);
+            try {
+                if ($eauth->authenticate()) {
+//                  var_dump($eauth->getIsAuthenticated(), $eauth->getAttributes()); exit;
+
+                    $identity = User::findByEAuth($eauth);
+                    Yii::$app->getUser()->login($identity);
+
+                    // special redirect with closing popup window
+                    $eauth->redirect();
+                }
+                else {
+                    // close popup window and redirect to cancelUrl
+                    $eauth->cancel();
+                }
+            }
+            catch (\nodge\eauth\ErrorException $e) {
+                // save error to show it later
+                Yii::$app->getSession()->setFlash('error', 'EAuthException: '.$e->getMessage());
+
+                // close popup window and redirect to cancelUrl
+//              $eauth->cancel();
+                $eauth->redirect($eauth->getCancelUrl());
+            }
         }
     }
 

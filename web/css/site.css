@@ -15,9 +15,7 @@ body {
 }
 
 .footer {
-    height: 60px;
-    background-color: #f5f5f5;
-    border-top: 1px solid #ddd;
+
     padding-top: 20px;
 }
 
@@ -88,4 +86,57 @@ a.desc:after {
     border-left: 3px solid #eed3d7;
     padding: 10px 20px;
     margin: 0 0 15px 0;
+}
+.navbar-my {
+    background-color: #77d8f3;
+
+}
+.navbar-nav > li > a{
+    color:#162664 !important;
+    font-weight: bold;
+}
+.navbar-nav > .active > a, .navbar-nav > .active > a:focus{
+    background-color: #0c6d88 !important;
+    color:#fff !important;
+}
+.navbar,.navbar-inverse{
+    border-color:rgb(12, 109, 136) !important;
+}
+.navbar-brand{
+    color:black !important;
+}
+.navbar-brand:hover{
+    color:white !important;
+}
+.container{
+
+}
+.sidebar-left{
+    width:30%;
+    margin-right:1em;
+    margin-bottom:1em;
+}
+.main-content,.sidebar-left{
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(176,176,176,0.59);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(176,176,176,0.59);
+    box-shadow: 0px 0px 10px 0px rgba(176,176,176,0.59);
+    position:relative;
+    float:left;
+    padding:1em;
+}
+.breadcrumb{
+    margin-bottom: 5px;
+    background-color: #fff;
+}
+.main-content{
+    width:68%;
+}
+.navbar-nav > li > a:hover{
+    color: #fff !important;
+    background-color: #77e0f3 !important;
+}
+@media screen and (max-width: 730px) {
+    .main-content,.sidebar-left{
+        width:100%;
+    }
 }
