@@ -60,7 +60,11 @@ AppAsset::register($this);
             <?= $this->render('/layouts/sidebar') ?>
         </div>
         <div class="main-content">
-            <?= Alert::widget() ?>
+            <?php
+            if (Yii::$app->getSession()->hasFlash('error')) {
+                echo '<div class="alert alert-danger">'.Yii::$app->getSession()->getFlash('error').'</div>';
+            }
+            ?>
         <?= $content; ?>
         </div>
     </div>

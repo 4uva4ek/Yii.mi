@@ -34,7 +34,7 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -56,9 +56,9 @@ $config = [
                 //'useStreamsFallback' => true,
             ),
             'services' => array( // You can change the providers and their classes.
-                'google' => array(
+               /* 'google' => array(
                     'class' => 'nodge\eauth\services\GoogleOpenIDService',
-                    //'realm' => '*.example.org', // your domain, can be with wildcard to authenticate on subdomains.
+                    'realm' => '*.example.org', // your domain, can be with wildcard to authenticate on subdomains.
                 ),
                 'yandex' => array(
                     'class' => 'nodge\eauth\services\YandexOpenIDService',
@@ -73,8 +73,8 @@ $config = [
                 'google_oauth' => array(
                     // register your app here: https://code.google.com/apis/console/
                     'class' => 'nodge\eauth\services\GoogleOAuth2Service',
-                    'clientId' => '...',
-                    'clientSecret' => '...',
+                    'clientId' => 'api-project-511669764597',
+                    'clientSecret' => '511669764597',
                     'title' => 'Google (OAuth)',
                 ),
                 'yandex_oauth' => array(
@@ -123,14 +123,14 @@ $config = [
                 'steam' => array(
                     'class' => 'nodge\eauth\services\SteamOpenIDService',
                     //'realm' => '*.example.org', // your domain, can be with wildcard to authenticate on subdomains.
-                ),
+                ),*/
                 'vkontakte' => array(
                     // register your app here: https://vk.com/editapp?act=create&site=1
                     'class' => 'nodge\eauth\services\VKontakteOAuth2Service',
                     'clientId' => '4903245',
                     'clientSecret' => '2insVm0abgIU7470oIbO',
                 ),
-                'mailru' => array(
+               /* 'mailru' => array(
                     // register your app here: http://api.mail.ru/sites/my/add
                     'class' => 'nodge\eauth\services\MailruOAuth2Service',
                     'clientId' => '...',
@@ -144,7 +144,7 @@ $config = [
                     'clientSecret' => '...',
                     'clientPublic' => '...',
                     'title' => 'Odnoklas.',
-                ),
+                ),*/
             ),
         ),
         'i18n' => array(

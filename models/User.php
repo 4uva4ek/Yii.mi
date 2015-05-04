@@ -164,6 +164,17 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Finds user by email
+     *
+     * @param string $email
+     * @return static|null
+     */
+    public static function findByEmail($val)
+    {
+        return static::findOne(['email' => $val]);
+    }
+
+    /**
      * Validates password
      *
      * @param string $password password to validate
@@ -293,14 +304,22 @@ class User extends ActiveRecord implements IdentityInterface
 
         $id = $service->getServiceName().'-'.$service->getId();
         $attributes = array(
-            'id' => $id,
+            'id'=>$id,
             'username' => $service->getAttribute('name'),
+            'email' => $service->getAttribute('email'),
             'auth_key' => md5($id),
-            'profile' => $service->getAttributes(),
+            'status' =>self::STATUS_ACTIVE,
+            'type_reg'=>$service->getServiceName(),
         );
-        $attributes['profile']['service'] = $service->getServiceName();
+        if (!$attributes['email']){
+            $attributes['email'] = $id.'@vk.com';
+        }
         Yii::$app->getSession()->set('user-'.$id, $attributes);
         return new self($attributes);
+    }
+
+    public function singUpEAuth($attr){
+
     }
 
 }
