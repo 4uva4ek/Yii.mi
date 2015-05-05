@@ -69,15 +69,13 @@ class SiteController extends Controller
 
                     // special redirect with closing popup window
                     $eauth->redirect();
-                }
-                else {
+                } else {
                     // close popup window and redirect to cancelUrl
                     $eauth->cancel();
                 }
-            }
-            catch (\nodge\eauth\ErrorException $e) {
+            } catch (\nodge\eauth\ErrorException $e) {
                 // save error to show it later
-                Yii::$app->getSession()->setFlash('error', 'EAuthException: '.$e->getMessage());
+                Yii::$app->getSession()->setFlash('error', 'EAuthException: ' . $e->getMessage());
 
                 // close popup window and redirect to cancelUrl
 //              $eauth->cancel();
