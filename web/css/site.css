@@ -114,7 +114,6 @@ a.desc:after {
 .sidebar-left{
     width:30%;
     margin-right:1em;
-    margin-bottom:1em;
 }
 .main-content,.sidebar-left{
     -webkit-box-shadow: 0px 0px 10px 0px rgba(176,176,176,0.59);
@@ -129,7 +128,10 @@ a.desc:after {
     background-color: #fff;
 }
 .main-content{
-    width:68%;
+    width:100%;
+}
+.main_page{
+    display:flex;
 }
 .navbar-nav > li > a:hover{
     color: #fff !important;
@@ -138,5 +140,12 @@ a.desc:after {
 @media screen and (max-width: 730px) {
     .main-content,.sidebar-left{
         width:100%;
+    }
+    .sidebar-left{
+        margin-bottom:1em;
+        margin-right:0px;
+    }
+    .main_page{
+        display:block;
     }
 }

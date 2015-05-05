@@ -36,15 +36,15 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right navbar-my'],
         'items' => array_filter([
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/default/index']],
+            ['label' => 'Главная', 'url' => ['/site/index']],
+            ['label' => 'О нас', 'url' => ['/site/about']],
+            ['label' => 'Контакты', 'url' => ['/default/index']],
             Yii::$app->user->isGuest ?
-                ['label' => 'Sign Up', 'url' => ['/default/signup']] :
+                ['label' => 'Регистрация', 'url' => ['/default/signup']] :
                 false,
             Yii::$app->user->isGuest ?
-                ['label' => 'Login', 'url' => ['/default/login']] :
-                ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                ['label' => 'Вход', 'url' => ['/default/login']] :
+                ['label' => 'Выход (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/default/logout'],
                     'linkOptions' => ['data-method' => 'post']],
         ]),
@@ -56,16 +56,18 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <div class="sidebar-left">
-            <?= $this->render('/layouts/sidebar') ?>
-        </div>
-        <div class="main-content">
-            <?php
-            if (Yii::$app->getSession()->hasFlash('error')) {
-                echo '<div class="alert alert-danger">'.Yii::$app->getSession()->getFlash('error').'</div>';
-            }
-            ?>
-        <?= $content; ?>
+        <div class="main_page">
+            <div class="sidebar-left">
+                <?= $this->render('/layouts/sidebar') ?>
+            </div>
+            <div class="main-content">
+                <?php
+                if (Yii::$app->getSession()->hasFlash('error')) {
+                    echo '<div class="alert alert-danger">' . Yii::$app->getSession()->getFlash('error') . '</div>';
+                }
+                ?>
+                <?= $content; ?>
+            </div>
         </div>
     </div>
 </div>

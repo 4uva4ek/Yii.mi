@@ -34,7 +34,21 @@ class SignupForm extends Model
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
 
-            ['verifyCode', 'captcha', 'captchaAction' => '/site/captcha'],
+            ['verifyCode', 'captcha'],
+        ];
+    }
+
+    /**
+     * @return array customized attribute labels
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Имя',
+            'email' => 'Адрес электронной почты',
+            'password' => 'Пароль',
+            'verifyCode' => 'Код с картинки',
+
         ];
     }
 
