@@ -137,6 +137,11 @@ a.desc:after {
     color: #fff !important;
     background-color: #77e0f3 !important;
 }
+.clearfix{
+    float:left;
+    margin-right:1em;
+    width:48%;
+}
 @media screen and (max-width: 730px) {
     .main-content,.sidebar-left{
         width:100%;

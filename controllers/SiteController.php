@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Categories;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -108,5 +109,9 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+    public function actionTest(){
+        $roots = Categories::findOne(['cat_id'=>5]);
+        var_dump($roots->leaves()->all());
     }
 }
