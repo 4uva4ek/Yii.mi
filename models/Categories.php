@@ -29,7 +29,7 @@ class Categories extends \yii\db\ActiveRecord
         return [
             'tree' => [
                 'class' => NestedSetsBehavior::className(),
-                 //'treeAttribute' => 'tree',
+                 'treeAttribute' => 'id',
                  'leftAttribute' => 'cat_left',
                  'rightAttribute' => 'cat_right',
                  'depthAttribute' => 'cat_level',
@@ -50,7 +50,7 @@ class Categories extends \yii\db\ActiveRecord
      */
     public function getCategoriesData()
     {
-        return $this->hasOne(CategoriesData::className(), ['cat_id' => 'cat_id']);
+        return $this->hasOne(CategoriesData::className(), ['id' => 'id']);
     }
 
     public static function find()

@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\User;
 use app\models\ContactForm;
+use app\models\Categories;
 
 class SiteController extends Controller
 {
@@ -110,5 +111,8 @@ class SiteController extends Controller
         return $this->render('about');
     }
     public function actionTest(){
+        $countries = Categories::findOne(['id'=>5]);
+        $australia = new Categories(['title' => '123']);
+        $australia->appendTo($countries);
     }
 }
