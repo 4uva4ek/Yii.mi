@@ -2,16 +2,19 @@
 
 namespace app\controllers;
 
+use app\models\Categories;
+use app\models\CategoriesSearch;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\User;
 use app\models\ContactForm;
-use app\models\Categories;
+use app\myclass\Translit;
 
 class SiteController extends Controller
 {
+
     public function behaviors()
     {
         return [
@@ -110,9 +113,17 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
-    public function actionTest(){
-        $countries = Categories::findOne(['id'=>5]);
-        $australia = new Categories(['title' => '123']);
-        $australia->appendTo($countries);
+
+    public function actionTest()
+    {
+        $jeans = Categories::findOne(['title' => 'Джинсы']);
+        $blue = new Categories(['title'=>'Голубые']);
+        $blue->prependTo($jeans);
+    }
+    public function actionTest2()
+    {
+        $jeans = Categories::findOne(['title' => 'Джинсы все']);
+        $var = new Translit();
+        var_dump ($var->replace($jeans['title']));
     }
 }
